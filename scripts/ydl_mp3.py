@@ -1,16 +1,24 @@
+import sys
+
 import youtube_dl
 from datetime import date
 
-url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley'
+urls = ['https://music.youtube.com/playlist?list=PLB5axqo_BYe1P2z9uBZIkTdqrDXpcvrdW']
 options = {
-    'download_archive': './downloads/audio/{directory}/'.format(directory=date.today()),
-    'outtmpl': '%(title)s-%(artist)s.%(ext)s',
+    'outtmpl': './downloads/audio/{directory}/%(title)s.%(ext)s'.format(directory=date.today()),
     'format': 'bestaudio/best',
+    'addmetadata': True,
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
         'preferredquality': '192',
+    },
+    {
+        'key': 'FFmpegMetadata',
     }],
 }
 with youtube_dl.YoutubeDL(options) as ydl:
-    ydl.download([url])
+    try:
+        ydl.download(urls)
+    except KeyboardInterrupt:
+        sys.exit()
