@@ -8,6 +8,7 @@ options = {
     'outtmpl': './downloads/audio/{directory}/%(title)s.%(ext)s'.format(directory=date.today()),
     'format': 'bestaudio/best',
     'addmetadata': True,
+    'ignoreerrors': True,
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
@@ -18,7 +19,4 @@ options = {
     }],
 }
 with youtube_dl.YoutubeDL(options) as ydl:
-    try:
-        ydl.download(urls)
-    except KeyboardInterrupt:
-        sys.exit()
+    ydl.download(urls)
