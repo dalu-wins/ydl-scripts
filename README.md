@@ -1,2 +1,6 @@
 # ydl-scripts
-Scripts to download stuff from YouTube (mp3/mp4)
+Some python scripts for downloading YouTube videos via the CLI </br> This uses the youtube_dl library </br>
+## Formats
+Supports downloads as:
++ mp3
++ mp4
