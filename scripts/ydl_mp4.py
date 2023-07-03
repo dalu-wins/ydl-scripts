@@ -1,4 +1,4 @@
-import youtube_dl
+import yt_dlp as downloader
 from datetime import date
 
 url = [input("Enter url:\t")]
@@ -16,5 +16,5 @@ options = {
         }],
     }
 
-with youtube_dl.YoutubeDL(options) as ydl:
+with downloader.YoutubeDL(options) as ydl:
     ydl.download(url)
